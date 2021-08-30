@@ -21,4 +21,40 @@ public class Product {
 
     @Column(name = "price", nullable = false)
     private int price;
+
+    protected Product() { }
+
+    public Product(String name, String description, int price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }
