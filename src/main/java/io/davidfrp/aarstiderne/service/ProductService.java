@@ -5,6 +5,8 @@ import io.davidfrp.aarstiderne.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductService {
 
@@ -15,7 +17,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public void removeProduct(Product product) {
-        productRepository.delete(product);
+    public List<Product> getProducts() {
+        return productRepository.findAll();
     }
 }
