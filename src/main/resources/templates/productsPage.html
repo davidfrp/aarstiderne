@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1>Produkter på lager</h1>
+        <section>
+            <ul>
+                <li th:each="product : ${products}">
+                    <p th:text="${product.getName()}"></p>
+                    <small th:text="${product.getPrice()}"></small>
+                </li>
+            </ul>
+        </section>
+    </body>
+</html>
