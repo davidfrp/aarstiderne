@@ -19,9 +19,14 @@
                 </div>
                 <div class="input-wrap">
                     <input type="text" id="description" th:field="*{description}" autocomplete="off" placeholder=" "
-                           maxlength="300" autocapitalize="none" spellcheck="false" autofocus>
+                           maxlength="300" autocapitalize="none" spellcheck="false">
                     <label for="description">Beskrivelse</label>
                     <label for="description" th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error"></label>
+                </div>
+                <div class="input-wrap">
+                    <input type="number" id="price" th:field="*{price}" autocomplete="off">
+                    <label for="price">Pris i kroner</label>
+                    <label for="price" th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></label>
                 </div>
                 <button type="submit" class="large">Gem ændringer</button>
                 <p><a th:href="@{/products}">Annullér</a></p>

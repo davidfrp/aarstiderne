@@ -70,7 +70,9 @@ public class ProductController {
         if (productFromDatabase == null)
             return "error/404";
 
+        productFromDatabase.setName(product.getName());
         productFromDatabase.setDescription(product.getDescription());
+        productFromDatabase.setPrice(product.getPrice());
 
         if (result.hasErrors()) {
             model.addAttribute("product", product);
