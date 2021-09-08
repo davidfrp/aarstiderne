@@ -4,22 +4,22 @@ $mobileWidth: 500px;
 
 :root {
     font-size: 16px;
-    font-family: Jost, Arial, sans-serif;
+    font-family: Jost, sans-serif;
 
     --color-red: #e02020;
     --color-red-light: #ffdbdb;
 
-    --color-blue: #1c304b;
-    --color-blue-light: #b5c4d7;
+    --color-text-heavy: #111;
+    --color-text-light: #b5c4d7;
 
     --color-darken: #00000012;
-    --color-gray: #676873;
+    --color-gray: #38393f;
     --color-bg: #ffffff;
 
-    --color-accent: #3a9727; // #276d97
-    --color-accent-hover: #358b23;
+    --color-accent: #138f13;
+    --color-accent-hover: #138313;
 
-    --border-radius: 0;
+    --border-radius: 0.25rem;
     --border-width: 2px;
 }
 
@@ -34,7 +34,7 @@ $mobileWidth: 500px;
 
     &:focus:not(:hover):not(:active) {
         outline-offset: 0.25rem;
-        outline-color: var(--color-accent);
+        outline-color: var(--color-text-heavy);
     }
 }
 
@@ -52,12 +52,11 @@ $mobileWidth: 500px;
 body {
     background: var(--color-bg);
     color: var(--color-gray);
-    font-size: 1.1rem;
     margin: 0;
 }
 
 main {
-    margin: 7rem auto 0;
+    margin: 4rem auto 0;
     width: clamp(400px, 850px, 50%);
 
     @media only screen and (max-width: $mobileWidth) {
@@ -68,7 +67,7 @@ main {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: var(--color-blue);
+    color: var(--color-text-heavy);
     font-weight: bold;
 
     &:first-child {
@@ -81,7 +80,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2.75rem;
 }
 
 h2 {
@@ -140,13 +139,13 @@ form {
 }
 
 a {
-    color: var(--color-accent);
+    color: inherit;
     transition: color 200ms ease;
-    text-decoration: none;
+    text-decoration: underline;
 
     &:hover {
-        color: var(--color-accent-hover);
-        text-decoration: underline;
+        color: var(--color-text-heavy);
+        text-decoration: none;
     }
 
     @include focusable;
@@ -157,6 +156,7 @@ button, a.button {
     border-radius: var(--border-radius);
     background: var(--color-accent);
     color: var(--color-bg);
+    text-decoration: none;
     display: inline-block;
     padding: 0.75rem 1.25rem;
     border: none;
@@ -186,9 +186,9 @@ button, a.button {
 
     input {
         border: none;
-        border-bottom: 1px var(--color-blue) solid;
+        border-bottom: 1px var(--color-text-heavy) solid;
         background: none;
-        color: var(--color-blue);
+        color: var(--color-text-heavy);
         padding: 1.725rem 0 0.725rem;
         width: 100%;
 
@@ -226,15 +226,14 @@ input[type="checkbox"] {
 }
 
 ul.products {
-    color: var(--color-blue);
     padding: 0;
     margin: 0;
 
     li {
         display: flex;
         align-items: center;
-        padding: 1.25rem 0;
-        border-bottom: var(--border-width) solid var(--color-darken);
+        padding: 1.5rem 0;
+        border-bottom: var(--border-width) solid var(--color-text-heavy);
 
         &:last-of-type {
             border-bottom: none;
@@ -268,11 +267,16 @@ ul.products {
                 margin-right: 0;
             }
         }
+
+        strong {
+            color: var(--color-text-heavy);
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
     }
 }
 
-.price-discount {
-    background-color: #ffe300;
-    box-shadow: 0.2rem 0.2rem #ff3c00;
-    padding: 0.2rem 0.5rem;
+.pricing {
+    color: var(--color-text-heavy);
+    font-weight: bold;
 }
