@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -63,7 +62,7 @@ public class ProductController {
     @PostMapping("/products/{id}/edit")
     public String editProduct(@PathVariable("id") long id,
                               @Valid @ModelAttribute("product") Product product,
-                              BindingResult result, HttpSession session, Model model) {
+                              BindingResult result, Model model) {
 
         Product productFromDatabase = productService.getProductById(id);
 
@@ -85,6 +84,32 @@ public class ProductController {
             ObjectError error = new ObjectError("globalError", "Something internally prevented your product from being changed. Try again later.");
             result.addError(error);
             return "editProduct";
+        }
+
+        return "redirect:/products";
+    }
+
+    @GetMapping("/products/add")
+    public String addProduct(Model model) {
+        model.addAttribute("product", new Product("", "", 0));
+        return "addProduct";
+    }
+
+    @PostMapping("/products/add")
+    public String addProduct(@Valid @ModelAttribute("product") Product product,
+                             BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("product", product);
+            return "addProduct";
+        }
+
+        Product newlyAddedProduct = productService.saveProduct(product);
+
+        if (newlyAddedProduct == null) {
+            ObjectError error = new ObjectError("globalError", "Something internally prevented your product from being added. Try again later.");
+            result.addError(error);
+            return "addProduct";
         }
 
         return "redirect:/products";

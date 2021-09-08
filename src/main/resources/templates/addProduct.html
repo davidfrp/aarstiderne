@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/layout.html :: head(title = 'Aarstiderne – Ændring af vareinformation')"></head>
+    <body>
+        <main>
+            <form th:action="@{/products/add}" th:object="${product}" th:method="post">
+                <h1>Tilføj ny vare</h1>
+                <section th:if="${#fields.hasErrors('global')}">
+                    <h2>Hovsa, noget gik galt</h2>
+                    <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
+                </section>
+                <p>Hold helst produktnavnet kort. Hold det lige ind til benet, så er det lettest at forstå.</p>
+                <input type="hidden" th:field="*{id}"/>
+                <div class="input-wrap">
+                    <input type="text" id="name" th:field="*{name}" autocomplete="off" placeholder=" " maxlength="50" autocapitalize="none" spellcheck="false" autofocus>
+                    <label for="name">Produktnavn</label>
+                    <label for="name" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></label>
+                </div>
+                <div class="input-wrap">
+                    <input type="text" id="description" th:field="*{description}" autocomplete="off" placeholder=" "
+                           maxlength="300" autocapitalize="none" spellcheck="false">
+                    <label for="description">Beskrivelse</label>
+                    <label for="description" th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error"></label>
+                </div>
+                <div class="input-wrap">
+                    <input type="number" id="price" th:field="*{price}" autocomplete="off">
+                    <label for="price">Pris i kroner</label>
+                    <label for="price" th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></label>
+                </div>
+                <button type="submit" class="large">Tilføj vare til katalog</button>
+                <p><a th:href="@{/products}">Annullér</a></p>
+            </form>
+        </main>
+    </body>
+</html>

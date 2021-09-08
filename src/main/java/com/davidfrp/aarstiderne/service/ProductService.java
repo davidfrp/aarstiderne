@@ -5,7 +5,6 @@ import com.davidfrp.aarstiderne.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
@@ -16,6 +15,10 @@ public class ProductService {
     @Autowired
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
+    }
+
+    public Product createProduct(String name, String description, int price) {
+        return productRepository.save(new Product(name, description, price));
     }
 
     public Product saveProduct(Product product) {

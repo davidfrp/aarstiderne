@@ -10,11 +10,12 @@
                         <strong th:text="${product.name}"></strong>
                         <p th:text="${product.description}"></p>
                     </div>
-                    <span class="pricing" th:text="${product.price + ' kr.'}"></span>
+                    <span class="pricing" th:text="${product.price + '.-'}"></span>
                     <a th:href="@{/products/{id}/edit(id=${product.id})}">Rediger</a>
                     <a th:href="@{/products/{id}/remove(id=${product.id})}">Fjern</a>
                 </li>
             </ul>
+            <a class="button" th:href="@{/products/add}">Tilføj en vare</a>
         </main>
     </body>
 </html>
