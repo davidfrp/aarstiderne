@@ -29,13 +29,14 @@ public class Product {
 
     @Min(value = 0, message = "Produktet skal mindst koste {value} kroner.")
     @Column(name = "price", nullable = false)
-    private float price;
+    private int price;
 
     protected Product() { }
 
-    public Product(String name, String description) {
+    public Product(String name, String description, int price) {
         this.name = name;
         this.description = description;
+        this.price = price;
     }
 
     public long getId() {
@@ -62,11 +63,11 @@ public class Product {
         this.description = description;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 }
